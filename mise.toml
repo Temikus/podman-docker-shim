@@ -1,0 +1,13 @@
+[tasks.build]
+depends = ['clean']
+description = "Build the tool"
+run = "go build -o podman-docker-shim"
+
+[tasks.setup]
+depends = ['build']
+description = "Install the tool"
+run = "cp podman-docker-shim /usr/local/bin && ln -s /usr/local/bin/podman-docker-shim /usr/local/bin/docker"
+
+[tasks.clean]
+description = "Cleanup the build"
+run = "rm -f podman-docker-shim"
